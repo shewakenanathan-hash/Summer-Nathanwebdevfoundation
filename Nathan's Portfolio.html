@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal portfolio of Nathan — student, developer and creative builder.">
+  <title>Nathan | Personal Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #070b16;
+      --card: rgba(18, 25, 45, 0.72);
+      --text: #f5f7ff;
+      --muted: #aab4ce;
+      --accent: #7c5cff;
+      --accent2: #20d9c5;
+      --border: rgba(255,255,255,.10);
+      --shadow: 0 25px 70px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(124,92,255,.20), transparent 30%),
+        radial-gradient(circle at 90% 30%, rgba(32,217,197,.12), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { width: min(1120px, 92%); margin: auto; }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      background: rgba(7,11,22,.68);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      color: white;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 8px 25px rgba(124,92,255,.28);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .logo:hover {
+      transform: translateY(-2px) rotate(-3deg);
+      box-shadow: 0 12px 30px rgba(124,92,255,.38);
+    }
+
+    .logo span { color: white; }
+
+    .nav-links { display: flex; gap: 26px; list-style: none; }
+    .nav-links a { color: var(--muted); font-weight: 600; transition: .25s; }
+    .nav-links a:hover { color: white; }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 110px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 7px 13px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--accent2);
+      background: rgba(32,217,197,.06);
+      font-weight: 700;
+      font-size: .85rem;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(3.1rem, 7vw, 6.2rem);
+      line-height: .95;
+      letter-spacing: -.07em;
+      margin-bottom: 25px;
+    }
+
+    h1 .gradient {
+      background: linear-gradient(100deg, #fff, #9f8cff, #20d9c5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 650px;
+      font-size: 1.08rem;
+      margin-bottom: 30px;
+    }
+
+    .buttons { display: flex; gap: 13px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-weight: 800;
+      border: 1px solid var(--border);
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+
+    .btn:hover { transform: translateY(-3px); }
+
+    .primary {
+      color: white;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), #5c8dff);
+      box-shadow: 0 12px 35px rgba(124,92,255,.28);
+    }
+
+    .secondary { background: rgba(255,255,255,.04); }
+
+    .photo-card {
+      position: relative;
+      width: min(390px, 90vw);
+      margin: auto;
+      padding: 10px;
+      border-radius: 32px;
+      background: linear-gradient(145deg, rgba(124,92,255,.9), rgba(32,217,197,.65));
+      box-shadow: var(--shadow);
+      transform: rotate(2deg);
+    }
+
+    .photo-card::after {
+      content: "";
+      position: absolute;
+      inset: 22px -18px -18px 22px;
+      z-index: -1;
+      border-radius: 32px;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .photo-card img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 24px;
+      background: #111827;
+    }
+
+    section { padding: 100px 0; }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -.05em;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 650px;
+      margin-bottom: 42px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+      transition: transform .25s, border-color .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(124,92,255,.5);
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(124,92,255,.14);
+      font-size: 1.35rem;
+      margin-bottom: 18px;
+    }
+
+    .card h3 { margin-bottom: 8px; }
+    .card p { color: var(--muted); }
+
+    .about {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-box {
+      padding: 34px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: linear-gradient(145deg, rgba(124,92,255,.09), rgba(32,217,197,.05));
+    }
+
+    .skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .skill {
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
+      color: #dce2f5;
+      font-weight: 700;
+      font-size: .9rem;
+    }
+
+    .contact {
+      text-align: center;
+      padding: 70px 30px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(124,92,255,.2), transparent 55%),
+        rgba(255,255,255,.03);
+    }
+
+    .contact p {
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto 28px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: .9rem;
+    }
+
+    @media (max-width: 820px) {
+      .hero-grid, .about { grid-template-columns: 1fr; gap: 45px; }
+      .hero { padding-top: 120px; }
+      .cards { grid-template-columns: 1fr; }
+      .photo-card { width: min(330px, 85vw); }
+      .nav-links { gap: 12px; font-size: .85rem; }
+    }
+
+    @media (max-width: 520px) {
+      .nav-links { display: none; }
+      section { padding: 75px 0; }
+      h1 { font-size: 3.4rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a class="logo" href="#home" aria-label="Nathan home">N</a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">STUDENT • DEVELOPER • CREATOR</div>
+          <h1>Hi, I'm <span class="gradient">Nathan.</span></h1>
+          <p>
+            Welcome to my personal portfolio. I'm a curious student who enjoys
+            technology, coding, websites, creative projects, and learning how
+            to turn ideas into real things.
+          </p>
+          <div class="buttons">
+            <a class="btn primary" href="#about">Explore My Work</a>
+            <a class="btn secondary" href="#contact">Contact Me</a>
+          </div>
+        </div>
+
+        <div class="photo-card">
+          <img src="profile-enhanced.jpg" alt="Nathan's profile portrait">
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about">
+        <div>
+          <h2 class="section-title">About Me</h2>
+          <p class="section-subtitle">A little introduction.</p>
+        </div>
+        <div class="about-box">
+          <p>
+            I'm passionate about building things with technology. I enjoy
+            experimenting with HTML, CSS, JavaScript, GitHub, app development,
+            and creative digital projects. My goal is to keep learning,
+            improve my skills, and create projects that people can actually use.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">What I Do</h2>
+        <p class="section-subtitle">Some of the areas I'm interested in.</p>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">💻</div>
+            <h3>Web Development</h3>
+            <p>I create responsive websites using HTML, CSS, and JavaScript.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">📱</div>
+            <h3>App Development</h3>
+            <p>I explore app development and experiment with different tools and frameworks.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🚀</div>
+            <h3>Creative Projects</h3>
+            <p>I enjoy turning ideas into digital projects, designs, and useful experiences.</p>
+          </article>
+        </div>
+
+        <div class="skills">
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">GitHub</span>
+          <span class="skill">VS Code</span>
+          <span class="skill">App Development</span>
+          <span class="skill">UI Design</span>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">My Projects</h2>
+        <p class="section-subtitle">
+          Here are some of my web projects, including my World News pages.
+        </p>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">🌍</div>
+            <h3>Africa News</h3>
+            <p>
+              A dedicated Africa news webpage featuring regional categories,
+              news cards, images, and a responsive layout.
+            </p>
+            <a class="btn primary" href="africa.html" target="_blank" style="margin-top:18px;">View Project</a>
+          </article>
+
+          <article class="card">
+            <div class="icon">🌎</div>
+            <h3>Americas News</h3>
+            <p>
+              A news webpage covering North America, Central America,
+              South America, and the Caribbean.
+            </p>
+            <a class="btn primary" href="america.html" target="_blank" style="margin-top:18px;">View Project</a>
+          </article>
+
+          <article class="card">
+            <div class="icon">🌏</div>
+            <h3>Asia News</h3>
+            <p>
+              A responsive Asia news webpage with sections for China,
+              Japan, India, and Southeast Asia.
+            </p>
+            <a class="btn primary" href="asia.html" target="_blank" style="margin-top:18px;">View Project</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="education">
+      <div class="container">
+        <h2 class="section-title">Education & Learning</h2>
+        <p class="section-subtitle">
+          My school life and the coding journey I am building alongside my studies.
+        </p>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">🎓</div>
+            <h3>Maria Rubatto Catholic School</h3>
+            <p>
+              I am a Grade 6 student at Maria Rubatto Catholic School in
+              Ethiopia. The school's official website highlights digital
+              learning and a focus on excellence, competence, and educational
+              leadership in science and technology.
+            </p>
+            <a class="btn secondary" href="https://saintmariarubatto.com/" target="_blank"
+               style="margin-top:18px;">Visit School Website</a>
+          </article>
+
+          <article class="card">
+            <div class="icon">💻</div>
+            <h3>NYDL Coding</h3>
+            <p>
+              I am currently learning coding at NYDL, where I am developing
+              my skills in web development and programming and building real
+              projects that I can include in my portfolio.
+            </p>
+            <p style="margin-top:14px;"><strong>Coding Teacher:</strong> Yamlak Negash</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🌱</div>
+            <h3>About Me</h3>
+            <p>
+              I am 12 years old and enjoy learning technology, creating
+              websites, experimenting with code, and turning new ideas into
+              projects.
+            </p>
+            <div class="skills">
+              <span class="skill">Grade 6</span>
+              <span class="skill">Ethiopia</span>
+              <span class="skill">Coding</span>
+              <span class="skill">Web Development</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact">
+          <h2 class="section-title">Let's Connect</h2>
+          <p>
+            Want to collaborate, build a project, or just say hello?
+            You can reach me by phone or email.
+          </p>
+
+          <div class="buttons" style="justify-content:center; margin-bottom:22px;">
+            <a class="btn secondary" href="tel:0964016305">📞 0964016305</a>
+            <a class="btn secondary" href="mailto:shewakenanathan@gmail.com">✉️ shewakenanathan@gmail.com</a>
+          </div>
+
+          <a class="btn primary" href="mailto:shewakenanathan@gmail.com">Email Me</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Nathan. Built with HTML & CSS.
+  </footer>
+</body>
+</html>
